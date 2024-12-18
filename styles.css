@@ -1,0 +1,42 @@
+body{
+    background-color:rgb(174, 198, 207);
+    margin:0px;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+main{
+    display:flex;
+    flex:1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:20px;
+}
+#title{
+    margin:0px;
+    font-size:100px;
+}
+#choices{
+    display: flex;
+    gap:50px;
+}
+#choices img{
+    padding:20px;
+}
+#choices img:hover{
+    padding:19px;
+    border:solid white 1px;
+    border-radius: 20px;
+}
+#makeHorizontal{
+    display:flex;
+    gap:200px;
+}
+#winMessage{
+    font-size:40px;
+}
+img{
+    width: 200px;
+    height: 200px;
+}

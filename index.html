@@ -4,9 +4,21 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles.css">
-        <script src="script.js"></script>
+        <script src="script.js" defer></script>
     </head>
     <body>
-        
+        <main>
+            <h1 id="title">Your Choice</h1>
+            <div id="choices">
+                <img id="rock" class="choice" src="images/rock.png">
+                <img id="paper" class="choice" src="images/paper.png">
+                <img id="scissor" class="choice" src="images/scissors.png">
+            </div>
+            <div id="makeHorizontal">
+                <h3 id="humanScore">Your Score: 0</h3>
+                <h3 id ="computerScore">Computer Score: 0</h3> 
+            </div>
+            <div id="winMessage"></div>
+        </main>
     </body>
 </html>

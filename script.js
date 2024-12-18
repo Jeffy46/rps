@@ -2,7 +2,14 @@ let humanScore=0;
 let computerScore=0;
 let humanChoice;
 let computerChoice;
-
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissor = document.querySelector("#scissor");
+const scores = document.querySelector("#makeHorizontal");
+const displayedHScore = document.querySelector("#humanScore");
+const displayedCScore = document.querySelector("#computerScore");
+const message = document.querySelector("#winMessage");
+//random int from 1 to 3 decides computer c
 //random int from 1 to 3 decides computer choice
 let getComputerChoice=()=>{
     let rand=Math.floor((Math.random()*3)+1);
@@ -16,13 +23,17 @@ let getComputerChoice=()=>{
 }
 
 //gets human choice
-let getHumanChoice=()=>{
-    return (prompt("Human Choice: ").toLowerCase());
+let setHumanChoice=(choice)=>{
+    humanChoice=choice;
 }
+rock.addEventListener("click", () => setHumanChoice("rock"));
+paper.addEventListener("click", () => setHumanChoice("paper"));
+scissor.addEventListener("click", () => setHumanChoice("scissor"));
 
 //plays a round and increments score
-let playRound=(humanChoice,computerChoice)=>{
-
+let playRound=()=>{
+    console.log(humanChoice);
+    computerChoice=getComputerChoice();
     let tieMessage=`It's a tie! ${humanChoice} does nothing to ${computerChoice}`;
     let winMessage=`Since ${humanChoice} beats ${computerChoice}, human gets a point!`;
     let loseMessage=`Since ${humanChoice} loses to ${computerChoice}, computer gets a point!`;
@@ -41,21 +52,26 @@ let playRound=(humanChoice,computerChoice)=>{
         console.log(loseMessage);
     }
     console.log(`Score is ${humanScore} - ${computerScore}`)
-}
+    displayedHScore.textContent="Your Score:" + humanScore;
+    displayedCScore.textContent="Computer Score: " + computerScore;
+    scores.append(displayedHScore);
+    scores.append(displayedCScore);
+    if(humanScore==5 || computerScore==5){
+        choices.forEach((choice)=>{
+            choice.removeEventListener("click", playRound);
+        });
 
-//plays a game with five rounds
-let playGame=()=>{
-    for(let i =0;i<5;i++){
-        humanChoice=getHumanChoice();
-        computerChoice=getComputerChoice();
-        playRound(humanChoice,computerChoice);
+       if(humanScore==5){
+        message.textContent="You win!"
+        }else{
+        message.textContent="You lose!"
+        } 
     }
-    if(humanScore<computerScore){
-        console.log(`Computer wins with a score of ${computerScore} to the your score of ${humanScore}.`)
-    }else if(humanScore>computerScore){
-        console.log(`You win with a score of ${humanScore} to the computers score of ${humanScore}.`)
-    }else{
-        console.log(`Its a tie with a score of ${humanScore} to ${computerScore}`)
-    }
+    
 }
-playGame();
+//clicking choice starts a round
+const choices = document.querySelectorAll(".choice");
+choices.forEach((choice)=>{
+    choice.addEventListener("click", playRound);
+});
+
